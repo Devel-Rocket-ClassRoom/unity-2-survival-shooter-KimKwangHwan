@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1ecbd72623e86419240ab5043940af, type: 3}
+  m_Name: Hellephant
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieData
+  startingHealth: 500
+  damage: 50
+  moveSpeed: 1.5
+  attackInterval: 3
+  score: 1000
+  hurtClip: {fileID: 8300000, guid: fce027b40770a44298a6f5a4233bfb04, type: 3}
+  deathClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
+  zombie: {fileID: -8545981581209055837, guid: fd286eef77ef0bc4fb32b1ad00c3e66d, type: 3}

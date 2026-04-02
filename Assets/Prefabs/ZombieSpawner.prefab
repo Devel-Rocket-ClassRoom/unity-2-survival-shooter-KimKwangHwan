@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770e658269bdca54abb93f491596eb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieSpawner
+  datas:
+  - {fileID: 11400000, guid: b60403f9338a4ee488f779d8136c526c, type: 2}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}

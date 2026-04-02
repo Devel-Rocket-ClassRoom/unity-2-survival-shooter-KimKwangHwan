@@ -1,15 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Gun : MonoBehaviour
 {
-    private float damage = 10f;
+    private float damage = 25f;
     private float maxDistance = 50f;
     private LineRenderer bulletLine;
     private AudioSource audio;
 
     public Transform shotPivot;
     public ParticleSystem gunParticle;
+    public Light pointLight;
     public LayerMask layerMask;
     public AudioClip shotClip;
 
@@ -22,6 +24,7 @@ public class Gun : MonoBehaviour
         bulletLine = GetComponent<LineRenderer>();
         audio = GetComponent<AudioSource>();
         coShot = null;
+        pointLight.enabled = false;
     }
 
     private void Start()
@@ -56,15 +59,17 @@ public class Gun : MonoBehaviour
         {
             hitPosition = shotPivot.position + shotPivot.forward * maxDistance;
         }
-        if (coShot !=null )
+        if (coShot != null)
         {
             StopCoroutine(coShot);
+            bulletLine.enabled = false;
+            pointLight.enabled = false;
             coShot = null;
         }
         coShot = StartCoroutine(CoShotEffect(hitPosition));
     }
 
-    private IEnumerator CoShotEffect(Vector3 hitPosition)
+    private IEnumerator CoShotEffect(Vector3 hitPosition) // 발사된 후 플레이어를 안 따라와서 로컬 포지션으로 할지 고민
     {
         gunParticle.Play();
         audio.PlayOneShot(shotClip);
@@ -72,10 +77,11 @@ public class Gun : MonoBehaviour
         bulletLine.SetPosition(1, hitPosition);
 
         bulletLine.enabled = true;
-
+        pointLight.enabled = true;
         yield return new WaitForSeconds(0.03f);
 
         bulletLine.enabled = false;
+        pointLight.enabled = false;
         coShot = null;
     }
 }

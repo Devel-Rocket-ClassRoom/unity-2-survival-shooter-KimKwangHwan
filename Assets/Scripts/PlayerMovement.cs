@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("Moving", playerInput.UpDown != 0 || playerInput.leftRight != 0);
     }
-
     private void FixedUpdate()
     {
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
@@ -46,5 +45,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 delta = new Vector3(playerInput.leftRight, 0, playerInput.UpDown);
         rb.MovePosition(transform.position + delta * moveSpeed * Time.deltaTime);
+    }
+
+    private void OnDisable()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
