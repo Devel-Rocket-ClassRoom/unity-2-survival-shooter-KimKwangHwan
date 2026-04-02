@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -25,11 +26,18 @@ public class GameManager : MonoBehaviour
 
     private bool isPause;
 
+    public GameObject pauseUI;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+    public Toggle soundOnOff;
+    public Button quitButton;
+    public Button resumeButton;
+    public AudioMixer mixer;
+
     void Awake()
     {
         instance = this;
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -38,11 +46,13 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 isPause = false;
+                pauseUI.SetActive(false);
             }
             else
             {
                 Time.timeScale = 0f;
                 isPause = true;
+                pauseUI.SetActive(true);
             }
         }
     }
@@ -53,6 +63,7 @@ public class GameManager : MonoBehaviour
         gameOverText.enabled = false;
         hpBar.value = 1;
         isPause = false;
+        pauseUI.SetActive(false);
     }
 
     public void hpBarUpdate(float value)
@@ -126,5 +137,41 @@ public class GameManager : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
+    }
+    public void QuitGame()
+    {
+    #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        isPause = false;
+        pauseUI.SetActive(false);
+    }
+    public void OnToggleChanged(bool isOn)
+    { 
+        if (isOn)
+        {
+            mixer.SetFloat("MasterVolume", 0f);
+        }
+        else
+        {
+            mixer.SetFloat("MasterVolume", -80f);
+        }
+    }
+    public void SetBGMVolume(float value)
+    {
+        float dB = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+        mixer.SetFloat("BGMVolume", dB);
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        float dB = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+        mixer.SetFloat("SFXVolume", dB);
     }
 }

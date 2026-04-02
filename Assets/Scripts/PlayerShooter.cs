@@ -12,6 +12,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0) return;
         if (playerInput.Shot)
         {
             gun.Fire();
