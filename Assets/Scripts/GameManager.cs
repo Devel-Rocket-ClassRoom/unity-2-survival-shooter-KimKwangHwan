@@ -33,11 +33,21 @@ public class GameManager : MonoBehaviour
     public Button quitButton;
     public Button resumeButton;
     public AudioMixer mixer;
+    public AudioSource bgm;
 
     void Awake()
     {
         instance = this;
     }
+
+    IEnumerator Start()
+    {
+        yield return null;
+        mixer.SetFloat("BGMVolume", Mathf.Log10(Mathf.Max(bgmSlider.value, 0.0001f)) * 20f);
+        mixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(sfxSlider.value, 0.0001f)) * 20f);
+        bgm.Play();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -62,6 +72,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"SCORE : 0";
         gameOverText.enabled = false;
         hpBar.value = 1;
+
         isPause = false;
         pauseUI.SetActive(false);
     }

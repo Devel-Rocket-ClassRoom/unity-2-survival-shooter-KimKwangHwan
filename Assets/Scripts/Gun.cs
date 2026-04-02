@@ -5,7 +5,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class Gun : MonoBehaviour
 {
     private float damage = 25f;
-    private float maxDistance = 50f;
+    private float maxDistance = 10f;
     private LineRenderer bulletLine;
     private AudioSource audio;
 

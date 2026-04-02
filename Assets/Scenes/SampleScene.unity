@@ -148,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7968738645870722111, guid: 1f7c1d0eeb872c241a16b2619884d5a4, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4fff99673a41e24439d527ad0bd6b569, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1703,8 +1703,8 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2845,7 +2845,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.25
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3639,6 +3639,7 @@ MonoBehaviour:
   quitButton: {fileID: 464566244}
   resumeButton: {fileID: 1367621332}
   mixer: {fileID: 24100000, guid: 1f7c1d0eeb872c241a16b2619884d5a4, type: 2}
+  bgm: {fileID: 127721219}
 --- !u!1 &2041644210
 GameObject:
   m_ObjectHideFlags: 0
